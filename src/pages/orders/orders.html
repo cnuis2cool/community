@@ -7,5 +7,35 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-list>
+
+
+      <ion-item>
+
+        <ion-thumbnail item-start>
+          <img src="assets/img/thumbnail-ghostbusters.png">
+        </ion-thumbnail>
+        <ion-label>Ghostbusters</ion-label>
+        <ion-select item-end>
+          <ion-option value="01" checked="true">1</ion-option>
+          <ion-option value="02">2</ion-option>
+          <ion-option value="03">3</ion-option>
+          <ion-option value="04">4</ion-option>
+          <ion-option value="05">5</ion-option>
+          <ion-option value="06">6</ion-option>
+        </ion-select>
+        <button ion-button clear item-end icon-only color="danger">
+          <ion-icon name='trash' is-active="false"></ion-icon>
+        </button>
+      </ion-item>
+
+  </ion-list>
+
 
 </ion-content>
+
+<ion-footer no-shadow>
+  <ion-toolbar position="bottom">
+    <button ion-button block round (click)="openNavDetailsPage()">Checkout</button>
+  </ion-toolbar>
+</ion-footer>

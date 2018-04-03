@@ -10,6 +10,12 @@ import { CategoryPage } from '../pages/category/category';
 import { SettingsPage } from '../pages/settings/settings';
 import { TabsPage } from '../pages/tabs/tabs';
 
+//import { CheckoutPage } from '../pages/checkout/checkout';
+import { SchedulePage } from '../pages/checkout/schedule/schedule';
+import { AddressPage } from '../pages/checkout/address/address';
+import { DeliveryPage } from '../pages/checkout/delivery/delivery';
+
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -21,7 +27,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     CategoryPage,
     SettingsPage,
-    TabsPage
+    TabsPage,
+
+    //CheckoutPage,
+    SchedulePage,
+    AddressPage,
+    DeliveryPage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +46,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     CategoryPage,
     SettingsPage,
-    TabsPage
+    TabsPage,
+
+    //CheckoutPage,
+    SchedulePage,
+    AddressPage,
+    DeliveryPage
   ],
   providers: [
     StatusBar,
