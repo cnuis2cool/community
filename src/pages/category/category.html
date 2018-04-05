@@ -10,61 +10,38 @@
 
   <ion-grid>
     <ion-row>
+
       <ion-col>
-        <div>
-          <ion-card (click)="itemTapped()">
-            <img src="./assets/img/card-saopaolo.png"/>
-            <div class="card-title">São Paulo</div>
-            <div class="card-subtitle">41 Listings</div>
-          </ion-card>
-        </div>
-      </ion-col>
-      <ion-col>
-        <div>
           <ion-card>
-            <img src="./assets/img/card-amsterdam.png"/>
-            <div class="card-title">Amsterdam</div>
-            <div class="card-subtitle">64 Listings</div>
+            <img src="./assets/img/category/eggs.jpeg"/>
+            <div class="card-title">Eggs</div>
+            <!-- <div class="card-subtitle">41 Listings</div> -->
           </ion-card>
-        </div>
       </ion-col>
-    </ion-row>
-    <ion-row>
+
       <ion-col>
-        <div>1 of 3</div>
+          <ion-card>
+            <img src="./assets/img/category/milk.jpeg"/>
+            <div class="card-title">Milk</div>
+          </ion-card>
       </ion-col>
-      <ion-col>
-        <div>2 of 3</div>
-      </ion-col>
-      <ion-col>
-        <div>3 of 3</div>
-      </ion-col>
+
     </ion-row>
   </ion-grid>
 
-
-  <ion-card>
-    <img src="./assets/img/card-saopaolo.png"/>
-    <div class="card-title">São Paulo</div>
-    <div class="card-subtitle">41 Listings</div>
+  <ion-card (click)="itemTapped()">
+    <img src="./assets/img/category/vegetables.jpeg"/>
+    <div class="card-title">Vegetables</div>
   </ion-card>
 
   <ion-card>
-    <img src="./assets/img/card-amsterdam.png"/>
-    <div class="card-title">Amsterdam</div>
-    <div class="card-subtitle">64 Listings</div>
+    <img src="./assets/img/category/fruits.jpeg"/>
+    <div class="card-title">Fruits</div>
   </ion-card>
 
   <ion-card>
-    <img src="./assets/img/card-sf.png"/>
-    <div class="card-title">San Francisco</div>
-    <div class="card-subtitle">72 Listings</div>
-  </ion-card>
-
-  <ion-card>
-    <img src="./assets/img/card-madison.png"/>
-    <div class="card-title">Madison</div>
-    <div class="card-subtitle">28 Listings</div>
+    <img src="./assets/img/category/ingredients.jpeg"/>
+    <div class="card-title">Ingredients</div>
   </ion-card>
 
   <!-- <ion-card *ngFor="let item of cardItems">
