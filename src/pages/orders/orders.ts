@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input, HostListener } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+//import { Schedule2Page } from '../checkout2/pages';
 
 @IonicPage()
 @Component({
@@ -21,8 +22,16 @@ export class OrdersPage {
 
   }
 
+  //@Input() schedulePage: Schedule2Page;
+
+  // @HostListener('click')
+  // click() {
+  //   this.schedulePage.toggle();
+  // }
+
   openNavDetailsPage() {
-    this.navCtrl.push('CheckoutPage');
+  this.navCtrl.push('Checkout2Page');
+    //this.schedulePage.toggle();
   }
 
 }

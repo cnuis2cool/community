@@ -1,7 +1,26 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons start>
+      <button ion-button icon-only>
+        <ion-icon name="clock"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>Community</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="cart"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
 <ion-tabs>
   <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
-  <ion-tab [root]="tab4Root" tabTitle="Category" tabIcon="information-circle"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="Orders" tabIcon="information-circle"></ion-tab>
-  <ion-tab [root]="tab5Root" tabTitle="Settings" tabIcon="information-circle"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="Profile" tabIcon="contacts"></ion-tab>
+  <ion-tab [root]="tab4Root" tabTitle="Category" tabIcon="apps"></ion-tab>
+  <ion-tab [root]="tab2Root" tabTitle="Orders" tabIcon="basket"></ion-tab>
+  <ion-tab [root]="tab5Root" tabTitle="Settings" tabIcon="settings"></ion-tab>
+  <ion-tab [root]="tab3Root" tabTitle="Account" tabIcon="contact"></ion-tab>
 </ion-tabs>

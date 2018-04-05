@@ -1,0 +1,32 @@
+page-products {
+
+  .product-price {
+    position: absolute;
+    top: 4%;
+  }
+
+  .product-quantity {
+    position: absolute;
+    top: 4%;
+    right: 4.5%;
+  }
+
+  .card-subtitle {
+    font-size: 1.0em;
+    position: absolute;
+    top: 52%;
+    width: 100%;
+    color: #fff;
+  }
+
+  #cart-btn {
+    position: relative;
+ }
+
+ #cart-badge {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+ }
+
+}

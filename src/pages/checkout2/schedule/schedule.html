@@ -1,0 +1,115 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Checkout: Schedule</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  
+  <ion-segment [(ngModel)]="delTime">
+    <ion-segment-button value="asap">
+      ASAP
+    </ion-segment-button>
+    <ion-segment-button value="later">
+      Date
+    </ion-segment-button>
+    <ion-segment-button value="recur">
+      Recurring
+    </ion-segment-button>
+  </ion-segment>
+
+
+  <div [ngSwitch]="delTime">
+
+    <ion-card class="adv-map" *ngSwitchCase="'asap'">
+
+      <div style="position: relative">
+        <img src="assets/img/advance-card-map-madison.png">
+        <!-- <ion-fab right top>
+          <button ion-fab class="fab-map">
+            <ion-icon name='pin'></ion-icon>
+          </button>
+        </ion-fab> -->
+      </div>
+      <ion-item>
+        <ion-icon color="subtle" large item-start name='clock'></ion-icon>
+        <h2>Your order will be delivered in</h2>
+        <p>30 Min approx</p>
+      </ion-item>
+      
+      <!-- <ion-item actions>
+        <span ion-text item-start color="secondary" class="item-bold">18 min</span>
+        <span ion-text item-start color="subtle">(2.6 mi)</span>
+        <button ion-button color="primary" clear item-end icon-start>
+          <ion-icon name='navigate'></ion-icon>
+          Start
+        </button>
+      </ion-item> -->
+
+    </ion-card>
+
+    <ion-card class="adv-map" *ngSwitchCase="'later'">
+
+      <div style="position: relative">
+        <img src="assets/img/advance-card-map-madison.png">
+      </div>
+      <ion-list>
+        <ion-item>
+          <ion-label>Date</ion-label>
+          <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="event.dateStart"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Time</ion-label>
+          <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.timeStarts"></ion-datetime>
+        </ion-item>
+
+        <!-- <ion-item>
+          <ion-label>Ends</ion-label>
+          <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="event.timeEnds"></ion-datetime>
+        </ion-item> -->
+
+        
+      </ion-list>
+      
+    </ion-card>
+
+    <ion-card class="adv-map" *ngSwitchCase="'recur'">
+
+      <div style="position: relative">
+        <img src="assets/img/advance-card-map-madison.png">
+      </div>
+      <ion-list>
+        <ion-item>
+          <ion-label>Date From</ion-label>
+          <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="event.dateStart"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Date To</ion-label>
+          <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="event.dateEnd"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Time</ion-label>
+          <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.timeStarts"></ion-datetime>
+        </ion-item>
+
+        <button ion-item>
+          <ion-label>Repeat</ion-label>
+          <ion-note item-end>Never</ion-note>
+        </button>
+        
+      </ion-list>
+      
+    </ion-card>
+    
+  </div>
+ 
+</ion-content>
+
+<ion-footer no-shadow>
+  <ion-toolbar position="bottom">
+    <button ion-button block round (click)="pushPage()">Next: Select Address</button>
+  </ion-toolbar>
+</ion-footer>

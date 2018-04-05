@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+import { ProductsPage } from '../products/products';
+
 @Component({
   selector: 'page-category',
   templateUrl: './category.html'
@@ -38,6 +40,17 @@ export class CategoryPage {
         content: 'Your scientists were so preoccupied with whether or not they could, that they didn\'t stop to think if they should.'
       }
     ];
+
   }
 
+  // itemTapped(event, item) {
+  //   this.navCtrl.push(ProductsPage, {
+  //     item: item
+  //   });
+  // }
+
+
+  itemTapped() {
+    this.navCtrl.push(ProductsPage);
+  }
 }

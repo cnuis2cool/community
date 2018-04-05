@@ -10,11 +10,17 @@ import { CategoryPage } from '../pages/category/category';
 import { SettingsPage } from '../pages/settings/settings';
 import { TabsPage } from '../pages/tabs/tabs';
 
+import { ProductsPage } from '../pages/products/products';
+
 //import { CheckoutPage } from '../pages/checkout/checkout';
 import { SchedulePage } from '../pages/checkout/schedule/schedule';
 import { AddressPage } from '../pages/checkout/address/address';
 import { DeliveryPage } from '../pages/checkout/delivery/delivery';
 
+import { Schedule2Page } from '../pages/checkout2/schedule/schedule';
+import { Address2Page } from '../pages/checkout2/address/address';
+import { Delivery2Page } from '../pages/checkout2/delivery/delivery';
+import { ConfirmPage } from '../pages/checkout2/confirm/confirm';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -29,10 +35,17 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SettingsPage,
     TabsPage,
 
+    ProductsPage,
+
     //CheckoutPage,
     SchedulePage,
     AddressPage,
-    DeliveryPage
+    DeliveryPage,
+
+    Schedule2Page,
+    Address2Page,
+    Delivery2Page,
+    ConfirmPage
   ],
   imports: [
     BrowserModule,
@@ -48,10 +61,17 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SettingsPage,
     TabsPage,
 
+    ProductsPage,
+
     //CheckoutPage,
     SchedulePage,
     AddressPage,
-    DeliveryPage
+    DeliveryPage,
+
+    Schedule2Page,
+    Address2Page,
+    Delivery2Page,
+    ConfirmPage
   ],
   providers: [
     StatusBar,
