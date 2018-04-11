@@ -6,7 +6,7 @@ import { Address2Page } from '../address/address';
   templateUrl: './schedule.html'
 })
 export class Schedule2Page {
-  delTime: string = "puppies";
+  delTime: string = "ASAP";
 
   public event = {
     dateStart: '2018-04-01',

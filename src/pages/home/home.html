@@ -5,13 +5,49 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+
+  <!-- <ion-slides loop="true" style="background-color: black">
+      <ion-slide *ngFor="let image of [1,2,3,4,5]">
+        <img data-src="./assets/img/slide{{image}}.png">
+      </ion-slide>
+    </ion-slides> -->
+  <ion-slides pager autoplay="2500" class="round">
+    <ion-slide *ngFor="let image of [1,2,3]" class="slider-item">
+      <img data-src="./assets/img/slide{{image}}.png">
+    </ion-slide>
+  </ion-slides>
+  <ion-row class="align-center">
+    <ion-card>
+      <ion-card-header>
+        <h2 text-center>Next Available Delivery</h2>
+      </ion-card-header>
+      <ion-card-content>
+       <p text-center>Today: 10:30 AM - 11:30 AM</p>
+      </ion-card-content>
+    </ion-card>
+  </ion-row>
+  <ion-list>
+
+    <ion-item>
+      <ion-icon name="ionic" item-start color="primary"></ion-icon>
+      <ion-label>Ionic View</ion-label>
+      <button ion-button outline item-end>Uninstall</button>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="brush" item-start color="primary"></ion-icon>
+      <ion-label>Ionic Creator</ion-label>
+      <button ion-button outline item-end>Uninstall</button>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="logo-octocat" item-start color="dark"></ion-icon>
+      <ion-label>Hubstruck</ion-label>
+      <button ion-button outline item-end>Uninstall</button>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="paw" item-start color="danger"></ion-icon>
+      <ion-label>Barkpark</ion-label>
+      <button ion-button outline item-end>Uninstall</button>
+    </ion-item>
+  </ion-list>
+
 </ion-content>

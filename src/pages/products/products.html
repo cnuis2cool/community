@@ -1,56 +1,15 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Vegetables
+      {{catProducts.name}}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
 
-  <ion-grid>
+  <!-- <ion-grid>
     <ion-row>
-      <!-- <ion-col>
-        <div>
-          <ion-card>
-
-            <ion-item>
-              <ion-avatar item-start>
-                <img src="./assets/img/marty-avatar.png">
-              </ion-avatar>
-              <h2>Marty McFly</h2>
-              <p>November 5, 1955</p>
-            </ion-item>
-
-            <img src="./assets/img/advance-card-bttf.png">
-
-            <ion-card-content>
-              <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.</p>
-            </ion-card-content>
-
-            <ion-row>
-              <ion-col>
-                <button ion-button icon-left clear small>
-                  <ion-icon name="thumbs-up"></ion-icon>
-                  <div>12 Likes</div>
-                </button>
-              </ion-col>
-              <ion-col>
-                <button ion-button icon-left clear small>
-                  <ion-icon name="text"></ion-icon>
-                  <div>4 Comments</div>
-                </button>
-              </ion-col>
-              <ion-col center text-center>
-                <ion-note>
-                  11h ago
-                </ion-note>
-              </ion-col>
-            </ion-row>
-
-          </ion-card>
-        </div>
-      </ion-col> -->
       <ion-col>
         <div>
           <ion-card>
@@ -146,7 +105,55 @@
           </ion-col>
     </ion-row>
   </ion-grid>
+   -->
 
+  <ion-list>
+
+    <ion-item *ngFor="let product of products">
+
+      <ion-thumbnail item-start class="item-ribbon">
+        <span class="ribbon cruzeiro">
+          <span>${{ product.price }}</span>
+        </span>
+        <img [src]="product.image">
+      </ion-thumbnail>
+
+      <div>
+        <h2>{{product.name}}</h2>
+        <p>{{product.quantity[0]}} gm</p>
+        <!-- <ion-select [(ngModel)]="product.quantity">
+          <ion-option *ngFor="let employee of product.quantity" [value]="product.quantity"></ion-option>
+        </ion-select> -->
+        <p><b>${{product.price}}</b></p>
+      </div>
+      <button ion-button icon-only clear item-end>
+        <ion-icon name="remove-circle"></ion-icon>
+      </button>
+      <ion-badge item-end>0</ion-badge>
+      <button ion-button icon-only clear item-end>
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+
+      <!-- <ion-label>Ghostbusters</ion-label>
+      <ion-select item-end>
+        <ion-option value="01" checked="true">1</ion-option>
+        <ion-option value="02">2</ion-option>
+        <ion-option value="03">3</ion-option>
+        <ion-option value="04">4</ion-option>
+        <ion-option value="05">5</ion-option>
+        <ion-option value="06">6</ion-option>
+      </ion-select> -->
+      <!-- <button ion-button clear item-end icon-only color="danger">
+        <ion-icon name='trash' is-active="false"></ion-icon>
+      </button> -->
+    </ion-item>
+
+</ion-list>
+
+<ion-fab right bottom>
+    <button ion-fab><ion-icon name="cart"></ion-icon></button>
+
+  </ion-fab>
 
 </ion-content>
 
