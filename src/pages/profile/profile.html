@@ -9,7 +9,7 @@
       <ion-avatar item-start (click)="updateProfileImage()">
         <img [src]="user.imageUrl ? user.imageUrl : placeholderPicture">
       </ion-avatar>
-      <p class="username">{{user.name}}</p>
+      <p *ngIf="auth.getEmail()" class="username">{{user.name}} | {{auth.getEmail()}}</p>
       <p>Owner</p>
     </ion-list-header>
   </ion-list>
@@ -53,11 +53,16 @@
     <ion-list-header>
       Other
     </ion-list-header>
-    <ion-item>
-      <ion-icon name='power' item-start></ion-icon>
-      <button ion-button (click)="logOut()" item-end>
-      Logout
+    <ion-item  *ngIf="auth.authenticated">
+      <button ion-button (click)="logout()" item-end>
+        Logout
       </button>
     </ion-item>
+
+    <!-- <ion-item (click)="login()" *ngIf="!auth.authenticated">
+      <ion-icon name="log-in" item-left></ion-icon>
+      Log in
+    </ion-item> -->
+
   </ion-list>
 </ion-content>
