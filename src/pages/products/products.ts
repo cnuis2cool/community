@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { sampleData } from '../../app/data';
-
+import { OrdersPage } from '../orders/orders';
 
 @Component({
   selector: 'page-products',
@@ -64,6 +64,10 @@ export class ProductsPage {
       },
     ];
     */
+  }
+
+  gotoCart(){
+    this.navCtrl.push(OrdersPage);
   }
 
 }

@@ -1,6 +1,9 @@
 export const sampleData = {
 
   //products: ['vegetables', 'fruits', 'milk'],
+  categories: [
+
+  ],
   products: [
     {'vegetables': [
       {

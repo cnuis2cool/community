@@ -1,37 +1,29 @@
 import { Component, Input, HostListener } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-//import { Schedule2Page } from '../checkout2/pages';
+import { Storage } from '@ionic/storage';
 
-@IonicPage()
+// @IonicPage()
 @Component({
   selector: 'page-orders',
   templateUrl: './orders.html'
 })
 
-// export class NavigationDetailsPage {
-//   item;
-
-//   constructor(params: NavParams) {
-//     this.item = params.data.item;
-//   }
-// }
-
 export class OrdersPage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(private navCtrl: NavController, public storage: Storage) {
 
   }
-
-  //@Input() schedulePage: Schedule2Page;
-
-  // @HostListener('click')
-  // click() {
-  //   this.schedulePage.toggle();
-  // }
 
   openNavDetailsPage() {
-  this.navCtrl.push('Checkout2Page');
-    //this.schedulePage.toggle();
+    this.navCtrl.push('Checkout2Page');
   }
+
+  // storage.set('name', 'Max');
+
+  // storage.get('age').then((val) => {
+  //   console.log('Your age is', val);
+  // });
+
+
 
 }

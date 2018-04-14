@@ -3,15 +3,21 @@
     <ion-title>
       Categories
     </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="addCategory()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+
   </ion-navbar>
 </ion-header>
 
 <ion-content class="card-background-page">
 
-  <ion-card *ngFor="let category of categories" (click)="itemTapped($event, category)">
+  <ion-card *ngFor="let category of categoryList$ | async" (click)="itemTapped($event, category)">
     <ion-item color="primary">
       <h1 text-center>{{category.name}}</h1>
-      <p text-center>{{category.content}}</p>
+      <p text-center>{{category.description}}</p>
     </ion-item>
     <img [src]="category.image">
     <div class="card-title">

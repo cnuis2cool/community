@@ -1,6 +1,12 @@
 page-home {
+
+  .ion-fixed {
+    height: 100%
+  }
   .scroll-content {
-    overflow: hidden;
+    overflow: auto;
+    margin-top: 20px;
+    margin-bottom: 200px;
   }
   .round {
     border-radius: 3%;
@@ -30,6 +36,102 @@ page-home {
   }
   .scroll-content {
     border-radius: 3%;
+  }
+
+  .card-background-page {
+    padding: 0px;
+
+    ion-card {
+      position: relative;
+      text-align: center;
+    }
+
+    .card-title {
+      position: absolute;
+      top: 30%;
+      font-size: 1.0em;
+      width: 100%;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .card-subtitle {
+      font-size: 0.5em;
+      position: absolute;
+      top: 55%;
+      width: 100%;
+      color: rgb(59, 118, 185);
+    }
+
+  }
+
+  /********* Fixed Slides ********/
+
+  .fixed-header{
+    margin-top:43px;
+    /*
+     The ionic header bar is 43px in height,
+     put your content below the header bar.
+    */
+  }
+
+  .fixed-header2{
+    margin-top:250px;
+    /*
+     The ionic header bar is 43px in height,
+     put your content below the header bar.
+    */
+  }
+
+  .platform-webview.platform-ios.platform-cordova .fixed-header{
+    margin-top:63px;
+    /* On iOS, moving a div out of ion-content,
+    I think you need to compensation for the 20px system status bar.
+    so it's 43px+20px=63px. but I'm not so sure, it hasn't been tested.
+    Test it yourself and make modifications if needed.
+    */
+  }
+
+  .platform-webview.platform-ios.platform-cordova .fixed-header2{
+    margin-top:270px;
+    /* On iOS, moving a div out of ion-content,
+    I think you need to compensation for the 20px system status bar.
+    so it's 43px+20px=63px. but I'm not so sure, it hasn't been tested.
+    Test it yourself and make modifications if needed.
+    */
+  }
+
+  .my-slides
+  {
+    height:250px;
+    width:100%;
+    position:absolute;
+    background:rgb(53, 153, 211);
+    color:red;
+    text-align:center;
+    padding:10px;
+  }
+
+  .next-delivery
+  {
+    height:70px;
+    width:100%;
+    position:absolute;
+    background:rgb(53, 153, 211);
+    color:red;
+    text-align:center;
+    padding:10px;
+  }
+
+  .ion-content-below-my-slides{
+    margin-top:220px!important;
+  }
+
+  .platform-webview.platform-ios.platform-cordova .ion-content-below-my-slides{
+    margin-top:220px;
+    /*
+    Same as .fixed-header
+    */
   }
 }
 

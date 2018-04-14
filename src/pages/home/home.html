@@ -1,31 +1,83 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+
 
   <!-- <ion-slides loop="true" style="background-color: black">
       <ion-slide *ngFor="let image of [1,2,3,4,5]">
         <img data-src="./assets/img/slide{{image}}.png">
       </ion-slide>
     </ion-slides> -->
-  <ion-slides pager autoplay="2500" class="round">
-    <ion-slide *ngFor="let image of [1,2,3]" class="slider-item">
-      <img data-src="./assets/img/slide{{image}}.png">
-    </ion-slide>
-  </ion-slides>
+  <div class="fixed-header my-slides">
+    <ion-slides pager autoplay="2500" class="round">
+      <ion-slide *ngFor="let image of [1,2,3]" class="slider-item">
+        <img data-src="./assets/img/slide{{image}}.png">
+      </ion-slide>
+    </ion-slides>
+</div>
+
+  <ion-content class="ion-content-below-my-slides">
   <ion-row class="align-center">
     <ion-card>
       <ion-card-header>
         <h2 text-center>Next Available Delivery</h2>
       </ion-card-header>
       <ion-card-content>
-       <p text-center>Today: 10:30 AM - 11:30 AM</p>
+        <p text-center>Today: 10:30 AM - 11:30 AM</p>
       </ion-card-content>
     </ion-card>
   </ion-row>
+
+
+  <ion-card>
+
+    <ion-card-header>
+      <h1 text-center>Shop by Category</h1>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-grid class="card-background-page">
+        <ion-row>
+          <ion-col>
+            <ion-card>
+              <img src="./assets/img/category/vegetables.jpeg" />
+              <div class="card-title">Vegetables</div>
+              <div class="card-subtitle">Shop for 100 get 5% off</div>
+            </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card>
+              <img src="./assets/img/category/fruits.jpeg" />
+              <div class="card-title">Fruits</div>
+              <div class="card-subtitle">Shop for 100 get 5% off</div>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-card>
+              <img src="./assets/img/category/milk.jpeg" />
+              <div class="card-title">Milk</div>
+              <div class="card-subtitle">Shop for 100 get 10 Rs off</div>
+            </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card>
+              <img src="./assets/img/category/ingredients.jpeg" />
+              <div class="card-title">Ingredients</div>
+              <div class="card-subtitle"></div>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+
+  </ion-card>
+
+
   <ion-list>
 
     <ion-item>
@@ -48,6 +100,7 @@
       <ion-label>Barkpark</ion-label>
       <button ion-button outline item-end>Uninstall</button>
     </ion-item>
+
   </ion-list>
 
 </ion-content>
