@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar primary>
+  <ion-navbar color="primary">
     <ion-title>Profile</ion-title>
   </ion-navbar>
 </ion-header>
@@ -11,12 +11,16 @@
       </ion-avatar>
       <p *ngIf="auth.getEmail()" class="username">{{user.name}} | {{auth.getEmail()}}</p>
       <p>Owner</p>
+      <button *ngIf="auth.authenticated" ion-button (click)="logout()" item-end>
+        Logout
+      </button>
     </ion-list-header>
   </ion-list>
   <ion-list no-border>
     <ion-list-header>
       General
     </ion-list-header>
+
     <ion-item>
       <ion-icon name='settings' item-start></ion-icon>
       <ion-label>App Language</ion-label>
@@ -24,16 +28,26 @@
         <ion-option *ngFor="let language of languages" [value]="language">{{language}}</ion-option>
       </ion-select>
     </ion-item>
-    <ion-item>
+
+    <!-- <ion-item>
+      <ion-icon name="plane" item-start color="danger"></ion-icon>
+      <ion-label>Airplane Mode</ion-label>
+      <ion-toggle color="secondary"></ion-toggle>
+    </ion-item> -->
+
+    <!-- <ion-item>
       <ion-toggle [(ngModel)]="enableNotifications" (click)="toggleNotifications()"></ion-toggle>
       <ion-label class="label"> Enable notifications </ion-label>
       <ion-icon name='notifications' item-start></ion-icon>
+    </ion-item> -->
+
+    <ion-item>
+      <ion-icon name="notifications" item-start></ion-icon>
+      <ion-label>Notifications</ion-label>
     </ion-item>
-  </ion-list>
-  <ion-list>
-    <ion-list-header>
-      Currency
-    </ion-list-header>
+
+
+
     <ion-item>
       <ion-icon name='card' item-start></ion-icon>
       <ion-label>Payment Method</ion-label>
@@ -41,23 +55,38 @@
         <ion-option *ngFor="let method of paymentMethods" [value]="method">{{method}}</ion-option>
       </ion-select>
     </ion-item>
-    <ion-item>
+    <!-- <ion-item>
       <ion-icon name='logo-usd' item-start></ion-icon>
       <ion-label>Currency</ion-label>
       <ion-select [(ngModel)]="currency">
         <ion-option *ngFor="let currency of currencies" [value]="currency">{{currency}}</ion-option>
       </ion-select>
-    </ion-item>
+    </ion-item> -->
   </ion-list>
   <ion-list>
     <ion-list-header>
       Other
     </ion-list-header>
-    <ion-item  *ngIf="auth.authenticated">
-      <button ion-button (click)="logout()" item-end>
-        Logout
-      </button>
-    </ion-item>
+    <ion-list>
+      <ion-item>
+        <ion-icon name="ionic" item-start color="primary" ></ion-icon>
+        <ion-label detail-push>My Orders</ion-label>
+      </ion-item>
+      <ion-item (click)="deliveryClicked()">
+        <ion-icon name="ionic" item-start color="primary" ></ion-icon>
+        <ion-label detail-push>Delivery Address</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="ionic" item-start color="primary" ></ion-icon>
+        <ion-label detail-push>My Holidays</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="ionic" item-start color="primary" ></ion-icon>
+        <ion-label detail-push>Refer & Earn</ion-label>
+      </ion-item>
+
+    </ion-list>
+
 
     <!-- <ion-item (click)="login()" *ngIf="!auth.authenticated">
       <ion-icon name="log-in" item-left></ion-icon>

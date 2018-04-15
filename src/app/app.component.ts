@@ -21,13 +21,14 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+      this.initializeApp();
     });
   }
 
   initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-    });
+    // this.platform.ready().then(() => {
+    //   this.statusBar.styleDefault();
+    // });
 
     this.auth.afAuth.authState
       .subscribe(

@@ -4,6 +4,7 @@ import { User } from '@firebase/auth-types';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../../app/services/auth.service';
 import { LoginPage } from '../login/login';
+import { BillingPage } from './address/billing';
 
 @Component({
   selector: 'page-profile',
@@ -22,7 +23,7 @@ export class ProfilePage {
   paymentMethod: any;
 
   languages = ['English', 'Portuguese', 'French'];
-  paymentMethods = ['Paypal', 'Credit Card'];
+  paymentMethods = ['COD (Cash on Delivery)', 'Paytm', 'UPI'];
   currencies = ['USD', 'BRL', 'EUR'];
 
   user = {
@@ -74,6 +75,10 @@ export class ProfilePage {
   logout() {
     this.auth.signOut();
     this.navCtrl.setRoot(LoginPage);
+  }
+
+  deliveryClicked(){
+    this.navCtrl.setRoot(BillingPage);
   }
 
 }

@@ -28,6 +28,7 @@ import { Schedule2Page } from '../pages/checkout2/schedule/schedule';
 import { Address2Page } from '../pages/checkout2/address/address';
 import { Delivery2Page } from '../pages/checkout2/delivery/delivery';
 import { ConfirmPage } from '../pages/checkout2/confirm/confirm';
+import { BillingPage } from '../pages/profile/address/billing';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -50,6 +51,7 @@ import { CategoryListService } from './services/category-list/category-list.serv
     CategoryPage,
     SettingsPage,
     TabsPage,
+    BillingPage,
 
     ProductsPage,
 
@@ -82,6 +84,7 @@ import { CategoryListService } from './services/category-list/category-list.serv
     CategoryPage,
     SettingsPage,
     TabsPage,
+    BillingPage,
 
     ProductsPage,
 

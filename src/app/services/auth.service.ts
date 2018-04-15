@@ -59,6 +59,14 @@ export class AuthService {
 				});
 			});
 		}
-	}
+  }
+
+  getLoggedUID() : string{
+    return this.afAuth.auth.currentUser.uid;
+  }
+
+  recover(email):void{
+    this.afAuth.auth.sendPasswordResetEmail(email);
+  }
 
 }
