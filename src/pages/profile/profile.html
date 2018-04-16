@@ -9,8 +9,7 @@
       <ion-avatar item-start (click)="updateProfileImage()">
         <img [src]="user.imageUrl ? user.imageUrl : placeholderPicture">
       </ion-avatar>
-      <p *ngIf="auth.getEmail()" class="username">{{user.name}} | {{auth.getEmail()}}</p>
-      <p>Owner</p>
+      <p *ngIf="auth.getEmail()" class="username">{{auth.displayName}} | {{auth.getEmail()}}</p>
       <button *ngIf="auth.authenticated" ion-button (click)="logout()" item-end>
         Logout
       </button>

@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Add Address</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="addAddress()" [formGroup]="addressForm">
+    <ion-list>
+
+      <ion-item>
+        <ion-toggle [(ngModel)]="defaultAddress" formControlName="default"></ion-toggle>
+        <ion-label class="label"> Default Address </ion-label>
+        <ion-icon name='home' item-start></ion-icon>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Select Community</ion-label>
+        <ion-select [(ngModel)]="community" formControlName="community" interface="popover">
+          <ion-option *ngFor="let community of communities" [value]="community">{{community}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <div ngxErrors="community">
+        <div ngxError="required" [when]="['dirty', 'touched']" padding>
+          Field is required
+        </div>
+      </div>
+
+      <ion-item>
+        <ion-label floating>Name</ion-label>
+        <ion-input type="text" value="" formControlName="name"></ion-input>
+      </ion-item>
+
+      <div ngxErrors="name">
+        <div ngxError="required" [when]="['dirty', 'touched']" padding>
+          Field is required
+        </div>
+        <div ngxError="minlength" [when]="['dirty', 'touched']" padding>
+          Min length is 3
+        </div>
+      </div>
+
+      <ion-item>
+        <ion-label floating>Phone Number</ion-label>
+        <ion-input type="text" value="" formControlName="phone"></ion-input>
+      </ion-item>
+
+      <div ngxErrors="phone">
+        <div ngxError="required" [when]="['dirty', 'touched']" padding>
+          Field is required
+        </div>
+        <div ngxError="minlength" [when]="['dirty', 'touched']" padding>
+          Min length is 10
+        </div>
+      </div>
+
+      <ion-item>
+        <ion-label floating>House Number</ion-label>
+        <ion-input type="text" value="" formControlName="houseNum"></ion-input>
+      </ion-item>
+
+      <div ngxErrors="houseNum">
+        <div ngxError="required" when="dirty" padding>
+          Field is required
+        </div>
+        <div ngxError="minlength" when="dirty" padding>
+          Min length is 2
+        </div>
+      </div>
+
+    </ion-list>
+
+    <div padding>
+			<button ion-button full type="submit">Add</button>
+    </div>
+
+  </form>
+</ion-content>
+
+

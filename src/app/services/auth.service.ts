@@ -9,7 +9,7 @@ export class AuthService {
 
 	constructor(public afAuth: AngularFireAuth) {
 		afAuth.authState.subscribe(user => {
-			this.user = user;
+      this.user = user;
 		});
 	}
 
@@ -21,6 +21,10 @@ export class AuthService {
 
   signUp(credentials) {
     return this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
+  }
+
+  setDisplayName(){
+
   }
 
   get authenticated(): boolean {

@@ -5,6 +5,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../../../app/services/user.service';
 import { AuthService } from '../../../app/services/auth.service';
 import { SharedService } from '../../../app/services/shared.service';
+import { NewAddressPage } from './new-address/new-address';
+import { AngularFireList } from 'angularfire2/database';
+import { UserAddresses } from '../../../app/models/user/user-addresses.model';
+import { Observable } from 'rxjs/Observable';
 
 
 @Component({
@@ -17,7 +21,10 @@ export class BillingPage {
   addressForm: FormGroup;
 
   community: any;
-  addresses: any;
+  address: any;
+  //addresses: AngularFireList<UserAddresses>;
+  delivery_details: string;
+  addressList$: Observable<UserAddresses[]>;
 
   communities = ['PPC', 'PPH', 'PPG'];
 
@@ -32,16 +39,25 @@ export class BillingPage {
     public sharedService: SharedService
    ) {
     //this.payment_mode="cod";
-    //this.delivery_details="";
-    this.userService.loadDeliveyAddress(this.authService.getLoggedUID());
-    this.addresses = this.userService.deliveryAddresses;
+    this.delivery_details = "";
+    this.address = navParams.data;
+    //this.userService.loadDeliveyAddress(this.authService.getLoggedUID());
+    //this.addresses = this.userService.deliveryAddresses;
+    //console.log('Address: ' + JSON.stringify(this.addresses));
 
-    this.addressForm = fb.group({
-      houseNum: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
-      community: ['', Validators.compose([Validators.required])],
-      name: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
-      phone: ['', Validators.compose([Validators.required, Validators.minLength(10)])]
-		});
+    this.getAddressList();
+  }
+
+  getAddressList(){
+    this.addressList$ = this.userService
+    .getDeliveryAddressList(this.authService.getLoggedUID())  // DB List
+    .snapshotChanges()  // Key & Value
+    .map(
+      changes => {
+        return changes.map(c => ({
+          key: c.payload.key, ...c.payload.val()
+        }));
+      });
   }
 
   addAddress() : void{
@@ -49,8 +65,10 @@ export class BillingPage {
   }
 
   editAddress(address: any) : void{
-    this.addressManipulation(true, address);
+    //this.addressManipulation(true, address);
+    this.navCtrl.push(NewAddressPage, {address: address});
   }
+
   deleteAddress(address:any) : void{
     let confirm = this.alertCtrl.create({
       title: 'Delete this Address',
@@ -84,6 +102,10 @@ export class BillingPage {
           this.userService.addAddress(this.authService.getLoggedUID(),data);
       }
     }
+  }
+
+  addNewAddress(){
+    this.navCtrl.push(NewAddressPage);
   }
 
  }

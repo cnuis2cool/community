@@ -4,7 +4,8 @@ import { User } from '@firebase/auth-types';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../../app/services/auth.service';
 import { LoginPage } from '../login/login';
-import { BillingPage } from './address/billing';
+import { BillingPage } from './addresses/billing';
+import { NewAddressPage } from './addresses/new-address/new-address';
 
 @Component({
   selector: 'page-profile',
@@ -78,7 +79,9 @@ export class ProfilePage {
   }
 
   deliveryClicked(){
-    this.navCtrl.setRoot(BillingPage);
+    this.navCtrl.push(BillingPage);
+    //this.navCtrl.setRoot(NewAddressPage);
+
   }
 
 }

@@ -1,24 +1,27 @@
 import {Injectable} from '@angular/core';
-import {AngularFireDatabase, AngularFireObject, AngularFireList} from 'angularfire2/database';
-import { Observable } from 'rxjs/Observable';
-import { User } from '../models/user/user.model';
+import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
+//import { Observable } from 'rxjs/Observable';
+import { UserAddresses } from '../models/user/user-addresses.model';
 
 @Injectable()
 export class UserService {
 
-  deliveryAddresses: AngularFireList<User> = null;
+  deliveryAddresses: AngularFireList<UserAddresses>;
 
   constructor(public db: AngularFireDatabase) {}
 
   loadDeliveyAddress(userid : string)  {
-     this.deliveryAddresses = this.db.list<User>(`user/${userid}/address`);
+     this.deliveryAddresses = this.db.list<UserAddresses>(`user/${userid}/address`);
   };
+
+  getDeliveryAddressList(userid : string){
+    return this.db.list<UserAddresses>(`user/${userid}/address`);
+  }
 
   addAddress(userid : string, address : any){
 
     this.loadDeliveyAddress(userid);
     this.deliveryAddresses.push(address);
-
   };
 
   removeAddress(userid : string, addressId : string){
