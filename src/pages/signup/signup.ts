@@ -5,7 +5,7 @@ import { AuthService } from '../../app/services/auth.service';
 import { TabsPage } from '../tabs/tabs';
 
 @Component({
-	selector: 'as-page-signup',
+	selector: 'page-signup',
 	templateUrl: './signup.html'
 })
 export class SignupPage {

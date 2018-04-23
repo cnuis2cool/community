@@ -1,7 +1,7 @@
 export interface UserAddresses {
   key?: string,
   userId: string,
-  defaultAddress: boolean,
+  default: boolean,
   name: string,
   community: string,
   houseNum: string,

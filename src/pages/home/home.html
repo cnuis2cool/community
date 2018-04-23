@@ -4,22 +4,23 @@
   </ion-navbar>
 </ion-header>
 
-
-
-  <!-- <ion-slides loop="true" style="background-color: black">
+<!-- <ion-slides loop="true" style="background-color: black">
       <ion-slide *ngFor="let image of [1,2,3,4,5]">
         <img data-src="./assets/img/slide{{image}}.png">
       </ion-slide>
     </ion-slides> -->
-  <div class="fixed-header my-slides">
+
+
+<ion-content>
+
+  <div>
     <ion-slides pager autoplay="2500" class="round">
       <ion-slide *ngFor="let image of [1,2,3]" class="slider-item">
-        <img data-src="./assets/img/slide{{image}}.png">
+        <img data-src="./assets/img/slides/slide{{image}}.jpeg">
       </ion-slide>
     </ion-slides>
-</div>
+  </div>
 
-  <ion-content class="ion-content-below-my-slides">
   <ion-row class="align-center">
     <ion-card>
       <ion-card-header>
@@ -32,51 +33,51 @@
   </ion-row>
 
 
-  <ion-card>
 
-    <ion-card-header>
-      <h1 text-center>Shop by Category</h1>
-    </ion-card-header>
+  <h1 text-center>Shop by Category</h1>
 
-    <ion-card-content>
-      <ion-grid class="card-background-page">
-        <ion-row>
-          <ion-col>
-            <ion-card>
-              <img src="./assets/img/category/vegetables.jpeg" />
-              <div class="card-title">Vegetables</div>
-              <div class="card-subtitle">Shop for 100 get 5% off</div>
-            </ion-card>
-          </ion-col>
-          <ion-col>
-            <ion-card>
-              <img src="./assets/img/category/fruits.jpeg" />
-              <div class="card-title">Fruits</div>
-              <div class="card-subtitle">Shop for 100 get 5% off</div>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-card>
-              <img src="./assets/img/category/milk.jpeg" />
-              <div class="card-title">Milk</div>
-              <div class="card-subtitle">Shop for 100 get 10 Rs off</div>
-            </ion-card>
-          </ion-col>
-          <ion-col>
-            <ion-card>
-              <img src="./assets/img/category/ingredients.jpeg" />
-              <div class="card-title">Ingredients</div>
-              <div class="card-subtitle"></div>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
 
-  </ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6 col-sm-6 col-md-4 col-lg-3>
+        <ion-card>
+          <img src="./assets/img/category/vegetables.jpeg" />
+          <div class="card-title" text-center>Vegetables</div>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6 col-sm-6 col-md-4 col-lg-3>
+        <ion-card>
+          <img src="./assets/img/category/fruits.jpeg" />
+          <div class="card-title" text-center>Fruits</div>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6 col-sm-6 col-md-4 col-lg-3>
+        <ion-card>
+          <img src="./assets/img/category/milk.jpeg" />
+          <div class="card-title" text-center>Milk</div>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6 col-sm-6 col-md-4 col-lg-3>
+        <ion-card>
+          <img src="./assets/img/category/ingredients.jpeg" />
+          <div class="card-title" text-center>Ingredients</div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
+
+  <ion-list>
+    <ion-item>
+      <ion-note item-start>
+        Left Note
+      </ion-note>
+      My Item
+      <ion-note item-end>
+        Right Note
+      </ion-note>
+    </ion-item>
+  </ion-list>
 
 
 

@@ -23,13 +23,22 @@
 
       <ion-row>
         <ion-col>
-          <button ion-button icon-left clear small (click)="editAddress(address)" color="primary">
+          <button ion-button icon-left small (click)="editAddress(address)" color="primary" outline>
             Edit
           </button>
         </ion-col>
         <ion-col>
-          <button ion-button icon-left clear small (click)="deleteAddress(address)" color="danger">
+          <button ion-button icon-left small (click)="deleteAddress(address)" color="danger" outline>
             Delete
+          </button>
+        </ion-col>
+        <ion-col>
+          <button *ngIf="address.defaultAddress" ion-button icon-left small color="light" outline>
+            <ion-icon name="checkmark-circle-outline"></ion-icon>
+            <span ng-disabled="true">Default</span>
+          </button>
+          <button *ngIf="!address.defaultAddress" ion-button icon-left small (click)="makeDefaultAddress(address)" color="primary" outline>
+            <span>Make Default</span>
           </button>
         </ion-col>
       </ion-row>

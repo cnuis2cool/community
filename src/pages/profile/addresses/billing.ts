@@ -108,4 +108,10 @@ export class BillingPage {
     this.navCtrl.push(NewAddressPage);
   }
 
+  makeDefaultAddress(address: any){
+    address.default = true;
+    this.userService.updateAddress(this.authService.getLoggedUID(), address, address.$key);
+    return;
+  }
+
  }

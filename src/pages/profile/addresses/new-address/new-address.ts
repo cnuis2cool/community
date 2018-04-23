@@ -55,7 +55,7 @@ export class NewAddressPage {
 
   initialize(address: any){
     this.community = address.community;
-    this.defaultAddress = address.defaultAddress;
+    this.defaultAddress = address.default;
 
     this.addressForm.patchValue({
       name: address.name,

@@ -8,6 +8,7 @@ import { HomePage } from '../home/home';
 
 import { Observable } from 'rxjs/Observable';
 
+
 @Component({
   selector: 'page-category',
   templateUrl: './category.html'
@@ -30,26 +31,6 @@ this.categoryList$ = this.categoryService
         }));
       });
 
-    this.categories = [
-      {
-        id: 'vegetables',
-        name: 'Vegetables',
-        image: './assets/img/category/vegetables.jpeg',
-        description: 'Order for 100 get 5% off',
-      },
-      {
-        id: 'fruits',
-        name: 'Fruits',
-        image: './assets/img/category/fruits.jpeg',
-        description: 'Order for 100 get 10% off',
-      },
-      {
-        id: 'milk',
-        name: 'Milk',
-        image: './assets/img/category/milk.jpeg',
-        description: 'Order for 50 get 5% off',
-      },
-    ];
 
   }
 
@@ -61,15 +42,19 @@ this.categoryList$ = this.categoryService
 
   addCategory(){
     this.item = {
-      id: 'vegetables',
-      name: 'Vegetables',
-      image: './assets/img/category/vegetables.jpeg',
-      description: 'Order for 100 get 5% off',
+      id: 2,
+      name: 'Milk',
+      image: './assets/img/category/milk.jpeg',
+      description: 'Order for 50 get 5% off',
     };
     this.categoryService.addCategory(this.item).then(ref => {
       console.log(ref.key);
       this.navCtrl.setRoot(HomePage, { key: ref.key });
     });
+  }
+
+  openCart(){
+
   }
 
 }

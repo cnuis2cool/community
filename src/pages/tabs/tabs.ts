@@ -4,7 +4,7 @@ import { OrdersPage } from '../orders/orders';
 import { ProfilePage } from '../profile/profile';
 import { HomePage } from '../home/home';
 import { CategoryPage } from '../category/category';
-import { SettingsPage } from '../settings/settings';
+import { OffersPage } from '../offers/offers';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -15,7 +15,7 @@ export class TabsPage {
   tab2Root = OrdersPage;
   tab3Root = ProfilePage;
   tab4Root = CategoryPage;
-  tab5Root = SettingsPage;
+  tab5Root = OffersPage;
 
   constructor() {
 

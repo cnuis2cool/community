@@ -40,8 +40,12 @@ export class UserService {
   //   });
   // };
 
+  // TODO - Not working
   updateAddress(userid : string, address : any , addressKey : string): void {
+    this.loadDeliveyAddress(userid);
     this.deliveryAddresses.update(addressKey, address).catch(error => this.handleError(error));
+    //this.deliveryAddresses.update(addressKey, address).catch(error => this.handleError(error));
+
   }
 
   private handleError(error) {

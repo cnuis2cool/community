@@ -1,10 +1,21 @@
+
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      {{catProducts.name}}
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+    <ion-navbar color="primary">
+      <ion-title>
+        <!-- <ion-icon name="basket"></ion-icon> -->
+        {{catProduct.name}}
+      </ion-title>
+      <ion-buttons end>
+        <button ion-button icon-left (click)="gotoCart()">
+          <ion-icon name="cart"></ion-icon>
+          {{ (cartList$ | async)?.length }}
+        </button>
+        <!-- <button ion-button (click)="addProducts()">
+          <ion-icon name="add"></ion-icon>
+        </button> -->
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
 
 <ion-content>
 
@@ -109,7 +120,7 @@
 
   <ion-list>
 
-    <ion-item *ngFor="let product of products">
+    <ion-item *ngFor="let product of products | async">
 
       <ion-thumbnail item-start class="item-ribbon">
         <span class="ribbon cruzeiro">
@@ -130,7 +141,7 @@
         <ion-icon name="remove-circle"></ion-icon>
       </button>
       <ion-badge item-end>0</ion-badge>
-      <button ion-button icon-only clear item-end>
+      <button ion-button icon-only clear item-end (click)="addToCart(product)">
         <ion-icon name="add-circle"></ion-icon>
       </button>
 
