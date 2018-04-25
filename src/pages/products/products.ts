@@ -11,7 +11,8 @@ import { AuthService } from '../../app/services/auth.service';
 import { Cart } from '../../app/models/cart/cart.model';
 import { Product } from '../../app/models/products/product.model';
 import { ProductListService } from '../../app/services/products.service';
-import { AngularFireList } from 'angularfire2/database';
+import { AngularFireList, AngularFireObject } from 'angularfire2/database';
+import { async } from '@firebase/util';
 
 @Component({
   selector: 'page-products',
@@ -22,9 +23,12 @@ import { AngularFireList } from 'angularfire2/database';
 export class ProductsPage {
 
   cartList$: Observable<Cart[]>;
+  cartList: any = [];
+  productInCart$: Observable<Cart>;
   products: Observable<Product[]> = null;
   catProduct: any;
   product: Product;
+  cartCount: number = 0;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -34,10 +38,11 @@ export class ProductsPage {
 
     this.catProduct = this.navParams.get('product');
 
-    cartService.loadCartList(this.authService.getLoggedUID());
+    //cartService.loadCartList(this.authService.getLoggedUID());
 
     this.getProductList();
 
+    this.getCartItems();
   }
 
   getProductList(){
@@ -47,7 +52,7 @@ export class ProductsPage {
     .map(
       changes => {
         return changes.map(c => ({
-          key: c.payload.key, ...c.payload.val()
+          key: c.payload.key, ...c.payload.val(),
         }));
       });
   }
@@ -59,28 +64,82 @@ export class ProductsPage {
       //console.log(item);
 
       this.productService.addProduct(item.category, item);
+
+      this.productService.addProduct(item.category, item).then(ref => {
+        console.log(ref.key);
+      });
     }
   }
 
+  // TODO - Should be called in a loop
+  updateProductQuantity(productId: string){
+    return this.productInCart$ = this.cartService.getProductCartList(this.authService.getLoggedUID(), productId).valueChanges();
+  }
+
   getCartItems(){
-    this.cartList$ = this.cartService
-    .getCartList(this.authService.getLoggedUID())  // DB List
-    .snapshotChanges()  // Key & Value
-    .map(
-      changes => {
-        return changes.map(c => ({
-          key: c.payload.key, ...c.payload.val()
-        }));
+
+    this.cartService
+    .getUserCartList(this.authService.getLoggedUID())  // DB List
+    .snapshotChanges().forEach( user => {
+      user.forEach( userData => {
+
+        let obj = this.cartList.find(x => x.key === userData.payload.key);
+        let index = this.cartList.indexOf(obj);
+
+        if (index != -1) {
+
+        // if (this.cartList.find(function (obj) {
+        //   return obj.key === userData.payload.key;
+        //  }) !== undefined){
+          this.cartList[index].quantity = userData.payload.val().quantity + 1;
+          this.cartCount += 1;  //userData.payload.val().quantity;
+
+        } else{
+          this.cartList.push({
+            key: userData.payload.key, ...userData.payload.val()
+          })
+          this.cartCount += userData.payload.val().quantity;
+        }})
+        //let data = userData.payload.val().data();
       });
+
+    // this.cartList$ = this.cartService
+    // .getUserCartList(this.authService.getLoggedUID())  // DB List
+    // .snapshotChanges()  // Key & Value
+    // .map(
+    //   changes => {
+    //     return changes.map(c => ({
+    //       key: c.payload.key, ...c.payload.val()
+    //     }));
+    //   });
+  }
+
+  updateCartItems(){
+    for(let item of this.cartList){
+      this.cartCount += item.values.quantity;
+    }
   }
 
   gotoCart(){
     this.navCtrl.push(OrdersPage);
   }
 
-  addToCart(product)  : void  {
-    this.cartService.addCartItem(this.authService.getLoggedUID(), product);
+  // addToCart(product)  : void  {
+  //   this.cartService.addCartItem(this.authService.getLoggedUID(), product);
+  //   this.getCartItems();
+  //   this.updateProductQuantity(product.key);
+  // }
+
+  incremenetCart(product: any){
+    this.cartService.incrementCart(this.authService.getLoggedUID(), product);
     this.getCartItems();
+    this.updateProductQuantity(product.key);
+  }
+
+  decremenetCart(product: any){
+    //this.cartService.decrementCartItem(this.authService.getLoggedUID(), product);
+    this.getCartItems();
+    this.updateProductQuantity(product.key);
   }
 
 }

@@ -18,9 +18,9 @@ export class ProductListService {
     return this.productList = this.db.list<Product>(this.dbPath + '/' + category);
   };
 
-  addProduct(category: number, product: Product): void {
+  addProduct(category: number, product: Product) {
     this.loadProducts(category);
-    this.productList.push(product);
+    return this.productList.push(product);
   }
 
   updateProduct(key: string, value: any): void {
@@ -44,7 +44,7 @@ export class ProductListService {
 
   // Danger zone
   deleteAll(): void {
-    this.productListRef.remove().catch(error => this.handleError(error));
+    this.productList.remove().catch(error => this.handleError(error));
   }
 
   private handleError(error) {

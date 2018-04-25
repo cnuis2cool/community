@@ -8,7 +8,8 @@
       <ion-buttons end>
         <button ion-button icon-left (click)="gotoCart()">
           <ion-icon name="cart"></ion-icon>
-          {{ (cartList$ | async)?.length }}
+            <!-- {{ (cartList$ | async)?.length }} TODO: Not the array length; should be all quantity -->
+            {{cartCount}}
         </button>
         <!-- <button ion-button (click)="addProducts()">
           <ion-icon name="add"></ion-icon>
@@ -137,11 +138,11 @@
         </ion-select> -->
         <p><b>${{product.price}}</b></p>
       </div>
-      <button ion-button icon-only clear item-end>
+      <button ion-button icon-only clear item-end (click)="decremenetCart(product)">
         <ion-icon name="remove-circle"></ion-icon>
       </button>
-      <ion-badge item-end>0</ion-badge>
-      <button ion-button icon-only clear item-end (click)="addToCart(product)">
+      <ion-badge item-end>{{(productInCart$ | async)?.quantity}}</ion-badge>
+      <button ion-button icon-only clear item-end (click)="incremenetCart(product)">
         <ion-icon name="add-circle"></ion-icon>
       </button>
 
