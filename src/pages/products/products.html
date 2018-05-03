@@ -141,7 +141,7 @@
       <button ion-button icon-only clear item-end (click)="decremenetCart(product)">
         <ion-icon name="remove-circle"></ion-icon>
       </button>
-      <ion-badge item-end>{{(productInCart$ | async)?.quantity}}</ion-badge>
+      <ion-badge item-end>{{product.itemsInCart | async}}</ion-badge>
       <button ion-button icon-only clear item-end (click)="incremenetCart(product)">
         <ion-icon name="add-circle"></ion-icon>
       </button>

@@ -1,3 +1,5 @@
+import { Observable } from "rxjs/Observable";
+
 export interface Product {
   key?: string,
   image: string,
@@ -6,4 +8,5 @@ export interface Product {
   quantity: Array<number>,
   units: string,
   category: number,
+  itemsInCart?: Observable<number>
 }

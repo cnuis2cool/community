@@ -1,4 +1,12 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-nav [root]="rootPage">
+  <ion-buttons end>
+    <button ion-button icon-left routerLink="/products/cart">
+      <ion-icon name="cart"></ion-icon>
+        <!-- {{ (cartList$ | async)?.length }} TODO: Not the array length; should be all quantity -->
+        <!-- {{(cartItems$ | async)?.length}} -->
+    </button>
+  </ion-buttons>
+</ion-nav>
 
 <!-- <ion-list-header *ngIf="auth.getEmail()">{{auth.getEmail()}}</ion-list-header>
 

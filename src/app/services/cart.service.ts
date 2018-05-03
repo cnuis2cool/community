@@ -1,33 +1,47 @@
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from "angularfire2/database";
+import { Observable, Subject, Subscriber} from 'rxjs';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import "rxjs/add/operator/map";
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/take';
 
 import { SharedService } from "./shared.service";
 import { Cart } from "../models/cart/cart.model";
-import { Observable } from "@firebase/util";
 import { Product } from "../models/products/product.model";
+import { AuthService } from "./auth.service";
 
 @Injectable()
 export class CartService {
 
+  private cartItemCount: number = 0;
+  private cartAmount: number = 0;
   private dbPath = '/user';
+  products: Observable<Product[]>
+  private _products: BehaviorSubject<Product[]>;
+  private dataStore: {
+    products: Product[]
+  };
 
-  cartItems: AngularFireList<Cart> = null;
+  cartItemsRef: AngularFireList<Cart> = null;
   userCartItems: AngularFireList<Cart> = null;
   productCartItems: AngularFireObject<Cart> = null;
 
   //orderItems: Observable<any>;
 
-  cartAmount: number = 0;
   constructor(
     public db: AngularFireDatabase,
-    private sharedService: SharedService
-  ) {}
+    private sharedService: SharedService,
+    public authService: AuthService,) {
+      this._products = <BehaviorSubject<Product[]>>new BehaviorSubject([]);
+      this.products = this._products.asObservable();
+    }
 
   getUserCartList(userid: string) {
-    return this.userCartItems = this.db.list<Cart>(this.dbPath + `/${userid}/cart`);
+    //this.cartItemsRef = this.db.list<Cart>(this.dbPath + `/${userid}/cart`);
+    this.userCartItems = this.db.list<Cart>(this.dbPath + `/${userid}/cart`);
+    this.loadCartList(this.authService.getLoggedUID());
+    return this.userCartItems
   }
 
   getProductCartList(userid: string, productId: string) {
@@ -66,6 +80,10 @@ export class CartService {
     //     })
   }
 
+  updateCart(productKey: string, quantity: number){
+    //this.cartItemsRef.update(productKey, {quantity: quantity});
+  }
+
   decrementCart(userid: string, product: Product): void {
     this.getUserCartList(userid);
     //this.getProductCartList(userid, product.key);
@@ -90,13 +108,15 @@ export class CartService {
     });
   }
 
-  loadCartList(userid: string) {
-    this.cartItems = this.db.list(this.dbPath + '/' + userid);
 
-    this.cartItems.valueChanges().subscribe(
+  loadCartList(userid: string) {
+    //this.userCartItems = this.db.list(this.dbPath + '/' + userid);
+
+    this.userCartItems.valueChanges().subscribe(
       rows => {
-        this.cartAmount = 0;
+        this.cartItemCount = 0;
         rows.forEach(row => {
+          this.cartItemCount = this.cartItemCount + row.quantity;
           this.cartAmount = this.cartAmount + row.quantity * row.price;
         });
       },
@@ -109,9 +129,10 @@ export class CartService {
     );
   }
 
+
   removeCartItem(userid: string, productId: string) {
-    this.loadCartList(userid);
-    this.cartItems
+    // this.loadCartList(userid);
+    this.userCartItems
       .remove(productId)
       .then(_ => this.sharedService.showToast("Item removed"));
   }
@@ -157,6 +178,10 @@ export class CartService {
     });
   }
   */
+
+  getCartCount(){
+    return this.cartItemCount;
+  }
 
   loadOrders(userid: string) {
     //this.orderItems = this.db.list("orders/" + userid);

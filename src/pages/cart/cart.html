@@ -1,0 +1,43 @@
+
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Cart
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <p>You have {{cartItems.length}} items in your bag</p>
+
+    <!-- <p>Total: {{getTotal() | async}}</p> -->
+
+  <ion-list>
+
+
+      <ion-item *ngFor="let item of cartItems">
+
+        <ion-thumbnail item-start>
+          <img [src]="item.image">
+        </ion-thumbnail>
+        <div>
+          <h2>{{item.name}}</h2>
+          <p>{{item.price} INR</p>
+        </div>
+        <button ion-button clear item-end icon-only color="danger">
+          <ion-icon name='trash' is-active="false"></ion-icon>
+        </button>
+      </ion-item>
+
+  </ion-list>
+
+
+</ion-content>
+
+<ion-footer no-shadow>
+  <ion-toolbar position="bottom">
+    <button ion-button block round (click)="openNavDetailsPage()">Checkout</button>
+  </ion-toolbar>
+</ion-footer>
+

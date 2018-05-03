@@ -5,6 +5,7 @@ import { ProfilePage } from '../profile/profile';
 import { HomePage } from '../home/home';
 import { CategoryPage } from '../category/category';
 import { OffersPage } from '../offers/offers';
+import { CartPage } from '../cart/cart';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -16,6 +17,7 @@ export class TabsPage {
   tab3Root = ProfilePage;
   tab4Root = CategoryPage;
   tab5Root = OffersPage;
+  tab6Root = CartPage;
 
   constructor() {
 

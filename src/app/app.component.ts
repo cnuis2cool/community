@@ -8,6 +8,11 @@ import { LoginPage } from '../pages/login/login';
 
 import { AuthService } from './services/auth.service';
 
+import { Product } from "./models/products/product.model";
+import { CartService } from './services/cart.service';
+
+import {Observable} from 'rxjs';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -15,13 +20,27 @@ export class MyApp {
   rootPage:any = LoginPage;
   private platform;
 
-  constructor(platform: Platform, private statusBar: StatusBar, splashScreen: SplashScreen, private auth: AuthService) {
+  public cartItems$: Observable<Product[]>;
+
+
+  constructor(platform: Platform,
+    private statusBar: StatusBar,
+    splashScreen: SplashScreen,
+    private auth: AuthService,
+    private cartService: CartService) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
       this.initializeApp();
+
+      // this.cartItems$ = this
+      // .cartService
+      // .getItems();
+
+      // this.cartItems$.subscribe(_ => _);
+
     });
   }
 

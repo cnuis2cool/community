@@ -19,6 +19,7 @@ import { OffersPage } from '../pages/offers/offers';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { ProductsPage } from '../pages/products/products';
+import { CartPage } from '../pages/cart/cart';
 
 //import { CheckoutPage } from '../pages/checkout/checkout';
 import { SchedulePage } from '../pages/checkout/schedule/schedule';
@@ -43,6 +44,7 @@ import { FIREBASE_CONFIG } from './firebase.credentials';
 import { CategoryListService } from './services/category-list/category-list.service';
 import { CartService } from './services/cart.service';
 import { ProductListService } from './services/products.service';
+import { SharedService } from './services/shared.service';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,7 @@ import { ProductListService } from './services/products.service';
     NewAddressPage,
 
     ProductsPage,
+    CartPage,
 
     //CheckoutPage,
     SchedulePage,
@@ -94,6 +97,7 @@ import { ProductListService } from './services/products.service';
     NewAddressPage,
 
     ProductsPage,
+    CartPage,
 
     //CheckoutPage,
     SchedulePage,
@@ -112,6 +116,7 @@ import { ProductListService } from './services/products.service';
     AuthService,
     CategoryListService,
     AngularFireAuth,
+    SharedService,
     CartService,
     ProductListService
   ]

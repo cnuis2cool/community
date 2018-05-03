@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { sampleData } from '../../app/data';
 import { OrdersPage } from '../orders/orders';
@@ -13,6 +13,7 @@ import { Product } from '../../app/models/products/product.model';
 import { ProductListService } from '../../app/services/products.service';
 import { AngularFireList, AngularFireObject } from 'angularfire2/database';
 import { async } from '@firebase/util';
+import { CartPage } from '../cart/cart';
 
 @Component({
   selector: 'page-products',
@@ -20,7 +21,7 @@ import { async } from '@firebase/util';
   providers: [SharedService, CartService, AuthService, ProductListService]
 })
 
-export class ProductsPage {
+export class ProductsPage implements OnInit {
 
   cartList$: Observable<Cart[]>;
   cartList: any = [];
@@ -42,7 +43,12 @@ export class ProductsPage {
 
     this.getProductList();
 
-    this.getCartItems();
+    //this.getCartItems();
+  }
+
+  ngOnInit(): void {
+    this.cartService
+    .getUserCartList(this.authService.getLoggedUID())
   }
 
   getProductList(){
@@ -72,15 +78,27 @@ export class ProductsPage {
   }
 
   // TODO - Should be called in a loop
-  updateProductQuantity(productId: string){
-    return this.productInCart$ = this.cartService.getProductCartList(this.authService.getLoggedUID(), productId).valueChanges();
+  updateProductQuantity(product: Product){
+    this.productInCart$ = this.cartService.getProductCartList(this.authService.getLoggedUID(), product.key).valueChanges();
+    product.itemsInCart = this.productInCart$.map(function(x) {return x['quantity']});
   }
+
+  /*
+  public addToCart(product: Product) {
+    this.cartService.addToCart(product);
+    this.gotoCart();
+  }
+  */
+
 
   getCartItems(){
 
+    this.cartCount = this.cartService.getCartCount();
+
+    /*
     this.cartService
     .getUserCartList(this.authService.getLoggedUID())  // DB List
-    .snapshotChanges().forEach( user => {
+    .snapshotChanges(['child_added']).forEach( user => {
       user.forEach( userData => {
 
         let obj = this.cartList.find(x => x.key === userData.payload.key);
@@ -102,6 +120,7 @@ export class ProductsPage {
         }})
         //let data = userData.payload.val().data();
       });
+      */
 
     // this.cartList$ = this.cartService
     // .getUserCartList(this.authService.getLoggedUID())  // DB List
@@ -114,6 +133,7 @@ export class ProductsPage {
     //   });
   }
 
+
   updateCartItems(){
     for(let item of this.cartList){
       this.cartCount += item.values.quantity;
@@ -121,6 +141,7 @@ export class ProductsPage {
   }
 
   gotoCart(){
+    // this.navCtrl.push(CartPage);
     this.navCtrl.push(OrdersPage);
   }
 
@@ -130,16 +151,18 @@ export class ProductsPage {
   //   this.updateProductQuantity(product.key);
   // }
 
+
   incremenetCart(product: any){
     this.cartService.incrementCart(this.authService.getLoggedUID(), product);
     this.getCartItems();
-    this.updateProductQuantity(product.key);
+    this.updateProductQuantity(product);
   }
 
   decremenetCart(product: any){
-    //this.cartService.decrementCartItem(this.authService.getLoggedUID(), product);
+    this.cartService.decrementCart(this.authService.getLoggedUID(), product);
     this.getCartItems();
-    this.updateProductQuantity(product.key);
+    this.updateProductQuantity(product);
   }
+
 
 }
