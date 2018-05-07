@@ -1,11 +1,15 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>Checkout: Schedule</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="getNextAvailableSlot()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-
 
   <ion-card>
     <ion-card-header>
@@ -13,7 +17,7 @@
     </ion-card-header>
     <ion-card-content>
 
-      <ion-segment [(ngModel)]="delTime">
+      <ion-segment [(ngModel)]="delTime" (ionChange)="getNextAvailableSlot($event)">
         <ion-segment-button value="ASAP">
           <ion-icon name="timer"></ion-icon>
         </ion-segment-button>
@@ -64,6 +68,13 @@
     </div>
     <ion-list>
       <ion-item>
+          <ion-icon color="subtle" large item-start name='clock'></ion-icon>
+          <h2>Next available delivery slot</h2>
+          <p *ngIf="slotFormatted.from">from {{slotFormatted.from}} to {{slotFormatted.to}}</p>
+          <p *ngIf="!slotFormatted.from">No delivery slots available</p>
+      </ion-item>
+
+      <!-- <ion-item>
         <ion-label>Date</ion-label>
         <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="event.dateStart"></ion-datetime>
       </ion-item>
@@ -71,7 +82,7 @@
       <ion-item>
         <ion-label>Time</ion-label>
         <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="event.timeStarts"></ion-datetime>
-      </ion-item>
+      </ion-item> -->
 
       <!-- <ion-item>
           <ion-label>Ends</ion-label>
@@ -88,7 +99,11 @@
     <div style="position: relative">
       <img src="assets/img/advance-card-map-madison.png">
     </div>
-    <ion-list>
+
+    <h2>Coming Soon !!</h2>
+
+    <!-- <ion-list>
+
       <ion-item>
         <ion-label>Date From</ion-label>
         <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="event.dateStart"></ion-datetime>
@@ -109,7 +124,7 @@
         <ion-note item-end>Never</ion-note>
       </button>
 
-    </ion-list>
+    </ion-list> -->
 
   </ion-card>
 

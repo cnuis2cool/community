@@ -9,7 +9,6 @@ import 'rxjs/add/operator/take';
 import { SharedService } from "./shared.service";
 import { Cart } from "../models/cart/cart.model";
 import { Product } from "../models/products/product.model";
-import { AuthService } from "./auth.service";
 
 @Injectable()
 export class CartService {
@@ -31,8 +30,7 @@ export class CartService {
 
   constructor(
     public db: AngularFireDatabase,
-    private sharedService: SharedService,
-    public authService: AuthService,) {
+    private sharedService: SharedService) {
       this._products = <BehaviorSubject<Product[]>>new BehaviorSubject([]);
       this.products = this._products.asObservable();
     }
@@ -40,7 +38,7 @@ export class CartService {
   getUserCartList(userid: string) {
     //this.cartItemsRef = this.db.list<Cart>(this.dbPath + `/${userid}/cart`);
     this.userCartItems = this.db.list<Cart>(this.dbPath + `/${userid}/cart`);
-    this.loadCartList(this.authService.getLoggedUID());
+    this.loadCartList();
     return this.userCartItems
   }
 
@@ -109,7 +107,7 @@ export class CartService {
   }
 
 
-  loadCartList(userid: string) {
+  loadCartList() {
     //this.userCartItems = this.db.list(this.dbPath + '/' + userid);
 
     this.userCartItems.valueChanges().subscribe(
@@ -131,7 +129,7 @@ export class CartService {
 
 
   removeCartItem(userid: string, productId: string) {
-    // this.loadCartList(userid);
+    // this.loadCartList();
     this.userCartItems
       .remove(productId)
       .then(_ => this.sharedService.showToast("Item removed"));

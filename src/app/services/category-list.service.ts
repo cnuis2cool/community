@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase } from "angularfire2/database";
-import { Category } from "../../models/category.model";
+import { Category } from "../models/category.model";
 
 @Injectable()
 export class CategoryListService {

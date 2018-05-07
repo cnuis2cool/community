@@ -69,7 +69,7 @@ export class ProductsPage implements OnInit {
     for (let item of sampleData.products) {
       //console.log(item);
 
-      this.productService.addProduct(item.category, item);
+      //this.productService.addProduct(item.category, item);
 
       this.productService.addProduct(item.category, item).then(ref => {
         console.log(ref.key);
@@ -79,8 +79,17 @@ export class ProductsPage implements OnInit {
 
   // TODO - Should be called in a loop
   updateProductQuantity(product: Product){
-    this.productInCart$ = this.cartService.getProductCartList(this.authService.getLoggedUID(), product.key).valueChanges();
-    product.itemsInCart = this.productInCart$.map(function(x) {return x['quantity']});
+    //this.productInCart$ = this.cartService.getProductCartList(this.authService.getLoggedUID(), product.key).valueChanges();
+    //product.itemsInCart = this.productInCart$.map(function(x) {return x['quantity']});
+
+    product.itemsInCart = this.cartService
+    .getProductCartList(this.authService.getLoggedUID(), product.key)
+    .valueChanges()
+    .map(
+      changes => {
+        return changes != null ? changes.quantity : 0
+      });
+
   }
 
   /*
@@ -133,16 +142,17 @@ export class ProductsPage implements OnInit {
     //   });
   }
 
-
+  /*
   updateCartItems(){
-    for(let item of this.cartList){
+    for(let item of this.products){
       this.cartCount += item.values.quantity;
     }
   }
+  */
 
   gotoCart(){
-    // this.navCtrl.push(CartPage);
-    this.navCtrl.push(OrdersPage);
+    this.navCtrl.push(CartPage);
+    // this.navCtrl.push(OrdersPage);
   }
 
   // addToCart(product)  : void  {

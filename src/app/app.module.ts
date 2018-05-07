@@ -4,6 +4,8 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
 import { IonicStorageModule } from '@ionic/storage';
 import { NgxErrorsModule } from '@ultimate/ngxerrors';
+import { MomentModule } from 'ngx-moment';
+
 import { SharedModule } from './shared.module';
 
 import { MyApp } from './app.component';
@@ -41,10 +43,15 @@ import { AuthService } from './services/auth.service';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { FIREBASE_CONFIG } from './firebase.credentials';
-import { CategoryListService } from './services/category-list/category-list.service';
+import { CategoryListService } from './services/category-list.service';
 import { CartService } from './services/cart.service';
 import { ProductListService } from './services/products.service';
 import { SharedService } from './services/shared.service';
+import { ScdeduleService } from './services/schedule.service';
+import { MomentService } from './services/moment.service';
+
+import { NgInitDirective } from './directives/ng-init';
+import { Checkout2PageModule } from '../pages/checkout2/checkout2.module';
 
 @NgModule({
   declarations: [
@@ -71,7 +78,9 @@ import { SharedService } from './services/shared.service';
     Schedule2Page,
     Address2Page,
     Delivery2Page,
-    ConfirmPage
+    ConfirmPage,
+
+    NgInitDirective
   ],
   imports: [
     BrowserModule,
@@ -80,7 +89,9 @@ import { SharedService } from './services/shared.service';
     NgxErrorsModule,
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireDatabaseModule,
-    SharedModule
+    MomentModule,
+    SharedModule,
+    Checkout2PageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -118,7 +129,9 @@ import { SharedService } from './services/shared.service';
     AngularFireAuth,
     SharedService,
     CartService,
-    ProductListService
+    ProductListService,
+    ScdeduleService,
+    MomentService
   ]
 })
 export class AppModule {}

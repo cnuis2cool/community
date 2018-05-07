@@ -1,10 +1,32 @@
 
   <ion-header>
-    <ion-navbar color="secondary">
+    <ion-navbar color="primary">
       <ion-title>Checkout: Address</ion-title>
     </ion-navbar>
   </ion-header>
 
   <ion-content padding>
+
+    <ion-list radio-group [(ngModel)]="selectedAddress">
+      <ion-list-header>
+        Select Address
+      </ion-list-header>
+
+      <ion-card *ngFor="let address of addressList$ | async">
+        <ion-item>
+          <ion-label>
+            <h2>
+              <b>{{address.name}}</b>
+            </h2>
+            <h3>{{address.community}}, {{address.houseNum}}</h3>
+            <br/>
+            <p>Phone : {{address.phone}} </p>
+          </ion-label>
+          <ion-radio name="address" [checked]="address.default" [value]="address"></ion-radio>
+        </ion-item>
+      </ion-card>
+
+    </ion-list>
+
     <button ion-button block (click)="pushPage()">Next: Delivery</button>
   </ion-content>

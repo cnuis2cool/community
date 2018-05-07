@@ -5,6 +5,7 @@ import { Schedule2Page } from './schedule/schedule'
 
 @IonicPage()
 @Component({
+  selector: 'page-checkout2',
   template: '<ion-nav [root]="rootPage"></ion-nav>'
 })
 export class Checkout2Page {

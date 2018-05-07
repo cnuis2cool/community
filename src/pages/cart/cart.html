@@ -9,24 +9,68 @@
 
 <ion-content padding>
 
-    <p>You have {{cartItems.length}} items in your bag</p>
+  <p class="align-center" *ngIf="cartItemCount == 0">
+    Your Cart is empty
+  </p>
 
-    <!-- <p>Total: {{getTotal() | async}}</p> -->
+  <ion-row class="align-center">
+    <ion-card>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            Total Items
+            <p item-end>
+              {{cartItemCount}}
+            </p>
+          </ion-item>
+
+          <!-- <ion-item>
+            Subtotal
+            <ion-note item-end>
+              ₹ {{cartAmount}}
+            </ion-note>
+          </ion-item> -->
+
+          <!-- <ion-item>
+            Coupons Applied
+            <ion-note item-end>
+              0
+            </ion-note>
+          </ion-item> -->
+
+          <ion-item>
+            Delivery Charges
+            <p item-end>
+              0
+            </p>
+          </ion-item>
+
+          <ion-item>
+            <B>Total Amount</B>
+            <p item-end>
+              <B>₹ {{cartAmount}}</B>
+            </p>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </ion-row>
 
   <ion-list>
-
-
-      <ion-item *ngFor="let item of cartItems">
+      <ion-item *ngFor="let item of cartItems | async">
 
         <ion-thumbnail item-start>
           <img [src]="item.image">
         </ion-thumbnail>
         <div>
           <h2>{{item.name}}</h2>
-          <p>{{item.price} INR</p>
+          <p>{{item.price}} ₹ X {{item.quantity}} = {{item.price * item.quantity}} ₹</p>
         </div>
-        <button ion-button clear item-end icon-only color="danger">
-          <ion-icon name='trash' is-active="false"></ion-icon>
+        <div>
+
+        </div>
+        <button ion-button clear item-end icon-only color="danger" (click)="removeItem(item)">
+          <ion-icon name='trash' is-active="true"></ion-icon>
         </button>
       </ion-item>
 

@@ -32,16 +32,6 @@ export class ProductListService {
     this.productList.remove(key).then(_ => console.log('product removed!'));
   }
 
-  // getProductList(): AngularFireList<Product> {
-  //   return this.productListRef;
-  // }
-
-  // getProductListForCategory(category: number){
-  //   //return this.productListRef.query.
-  //   return this.db.list<Product>(this.dbPath, ref => ref.orderByChild('category').equalTo(category));
-  //   //return this.db.list<Product>(this.dbPath + `user/${userid}/address`);
-  // }
-
   // Danger zone
   deleteAll(): void {
     this.productList.remove().catch(error => this.handleError(error));

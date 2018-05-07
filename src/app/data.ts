@@ -114,7 +114,35 @@ export const sampleData = {
         quantity: [500, 1000],
         units: 'ml',
         category: 2,
-      }],
+      }
+    ],
+
+    delivery_slots: [
+      {
+        type: 'weekday',
+        slots: {
+            start: '06:00',
+            end: '18:30',
+            duration: 1 //hr
+          }
+      },
+      {
+        type: 'weekend',
+        slots: {
+            start: '06:00',
+            end: '19:30',
+            duration: 1 //hr
+          }
+      },
+      {
+        type: 'holiday',
+        slots: {
+            start: '06:00',
+            end: '17:30',
+            duration: 2 //hr
+          }
+      }
+    ],
 
 
   // AUthentication

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { ProductsPage } from '../products/products';
-import { CategoryListService } from '../../app/services/category-list/category-list.service';
+import { CategoryListService } from '../../app/services/category-list.service';
 import { Category } from '../../app/models/category.model';
 import { HomePage } from '../home/home';
 
@@ -30,8 +30,6 @@ this.categoryList$ = this.categoryService
           key: c.payload.key, ...c.payload.val()
         }));
       });
-
-
   }
 
   itemTapped(event, item) {

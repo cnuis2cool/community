@@ -18,7 +18,7 @@
           <br/>
           <p>Phone : {{address.phone}} </p>
         </ion-label>
-        <ion-radio checked="{{address.defaultAddress}}" value="{{address.community + ' House: ' + address.houseNum + ' Phone : ' + address.phone}}"></ion-radio>
+        <ion-radio checked="{{address.default}}" value="{{address.community + ' House: ' + address.houseNum + ' Phone : ' + address.phone}}"></ion-radio>
       </ion-item>
 
       <ion-row>
@@ -33,11 +33,11 @@
           </button>
         </ion-col>
         <ion-col>
-          <button *ngIf="address.defaultAddress" ion-button icon-left small color="light" outline>
+          <button *ngIf="address.default" ion-button icon-left small color="light" outline>
             <ion-icon name="checkmark-circle-outline"></ion-icon>
             <span ng-disabled="true">Default</span>
           </button>
-          <button *ngIf="!address.defaultAddress" ion-button icon-left small (click)="makeDefaultAddress(address)" color="primary" outline>
+          <button *ngIf="!address.default" ion-button icon-left small (click)="makeDefaultAddress(address)" color="primary" outline>
             <span>Make Default</span>
           </button>
         </ion-col>

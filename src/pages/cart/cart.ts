@@ -5,6 +5,9 @@ import { Product } from "../../app/models/products/product.model";
 import { Observable } from "rxjs";
 import { of } from "rxjs/observable/of";
 import { Checkout2Page } from "../checkout2/checkout2";
+import { AuthService } from "../../app/services/auth.service";
+import { AngularFireList } from "angularfire2/database";
+import { Cart } from "../../app/models/cart/cart.model";
 
 @Component({
   selector: "page-cart",
@@ -14,22 +17,58 @@ import { Checkout2Page } from "../checkout2/checkout2";
 
 export class CartPage {
   public cartItems$: Observable<Product[]> = of([]);
-  public cartItems: Product[] = [];
+  public cartItems: Observable<Cart[]>;
+  public cartList: AngularFireList<Cart>;
 
-  constructor(private navCtrl: NavController, private cartService: CartService) {
-    // this.cartItems$ = this.cartService.getItems();
+  public cartTotal: number = 0;
+  public cartItemCount: number = 0;
+  public cartAmount: number = 0;
 
-    this.cartItems$.subscribe(_ => (this.cartItems = _));
+  constructor(private navCtrl: NavController,
+    private authService: AuthService,
+    private cartService: CartService) {
+    //this.cartItems$ = this.cartService.loadCartList();
+
+    //this.cartItems$.subscribe(_ => (this.cartItems = _));
+
+    //this.getTotal();
+
+    this.getCartList();
   }
 
-  /*
-  public getTotal(): Observable<number> {
-    // return this.cartService.getTotalAmount();
-  }
-  */
+  public getCartList(){
 
-  public removeItem(item: Product) {
-    // this.cartService.removeFromCart(item);
+    this.cartList = this.cartService.getUserCartList(this.authService.getLoggedUID());
+
+    this.cartList.valueChanges().subscribe(
+      rows => {
+        this.cartItemCount = 0;
+        this.cartAmount = 0;
+        rows.forEach(row => {
+          this.cartItemCount = this.cartItemCount + row.quantity;
+          this.cartAmount = this.cartAmount + row.quantity * row.price;
+        });
+      },
+      err => {
+        console.log("Not authenticated");
+      }
+    );
+
+    this.cartItems = this.cartList.snapshotChanges().map(
+      changes => {
+        return changes.map(c => ({
+          key: c.payload.key, ...c.payload.val()
+        }));
+      });
+
+  }
+
+  public getTotal() {
+    this.cartTotal = this.cartService.getCartCount();
+  }
+
+  public removeItem(item: Cart) {
+    this.cartService.removeCartItem(this.authService.getLoggedUID(), item.key);
   }
 
   public openNavDetailsPage() {
